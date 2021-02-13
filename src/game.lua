@@ -91,7 +91,7 @@ function game.update( dt )
 
   globalTime = globalTime + dt
 
-  if round > 2 then
+  if round > 10 then
     sceneManager.changeScene(require 'src/playAgain')
   end
 end
@@ -99,16 +99,25 @@ end
 function game.draw( ... )
   love.graphics.clear(colors.white)
 
+  love.graphics.setColor({1, 1, 1})
+  love.graphics.draw(brazilFlag, LANE_0_X - 25, 10+10, 0, 0.2, 0.2)
+  love.graphics.draw(latviaFlag, LANE_0_X - 25 + LANE_DISTANCE, 10 + 20, 0, 0.25, 0.25)
+  love.graphics.draw(sudanFlag, LANE_0_X - 25 + LANE_DISTANCE * 2, 10 + 10, 0, 0.2, 0.2)
+  love.graphics.draw(italyFlag, LANE_0_X - 25 + LANE_DISTANCE * 3, 10 + 20, 0, 0.3, 0.3)
+  love.graphics.draw(mexicoFlag, LANE_0_X - 25 + LANE_DISTANCE * 4, 10 + 20, 0, 0.3, 0.3)
+
   love.graphics.setColor(colors.blue)
   love.graphics.print('Which country is it?', 400, 350)
 
-  love.graphics.print(correctLane, 100, 300)
-  love.graphics.print(currentTip, 100, 350)
+  -- love.graphics.print(correctLane, 100, 300)
+  -- love.graphics.print(currentTip, 100, 350)
   love.graphics.print(facts[countries[correctLane + 1]][currentTip], 50, 400)
 
   for i = 1, TOTAL_LANES do
     love.graphics.print(tostring(countries[i]), LANE_0_X + LANE_DISTANCE * (i - 1), 100)
   end
+
+
 
   love.graphics.setColor(colors.darkBlue)
   love.graphics.rectangle(
