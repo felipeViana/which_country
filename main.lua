@@ -64,7 +64,8 @@ facts = {
 local sceneManager = require 'src/sceneManager'
 
 function love.load( ... )
-  sceneManager.changeScene(require 'src/mainMenu')
+  -- sceneManager.changeScene(require 'src/mainMenu')
+  sceneManager.changeScene(require 'src/game')
 end
 
 
