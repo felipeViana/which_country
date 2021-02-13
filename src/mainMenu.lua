@@ -23,7 +23,7 @@ function mainMenu.draw( ... )
   love.graphics.clear(colors.white)
 
   love.graphics.setColor(colors.blue)
-  love.graphics.print("Which country is it?", 500, 10)
+  love.graphics.print("Which country is it?", 500, 50)
 
   if selectedButton == 0 then
     love.graphics.rectangle(
