@@ -21,6 +21,25 @@ local round
 local score
 local time
 
+local correctLane
+local currentTip
+
+local function getNearestInteger( value )
+  local smallerInt = value - value % 1
+  local BiggerInt = (value + 1) - value % 1
+
+  if BiggerInt - value > value - smallerInt then
+    return smallerInt
+  else
+    return BiggerInt
+  end
+end
+local function random(a, b)
+  if not a then a, b = 0, 1 end
+  if not b then b = 0 end
+  return getNearestInteger(a + math.random() * (b - a))
+end
+
 function game.load( ... )
   playerX = 100
   currentLane = 0
@@ -33,6 +52,9 @@ function game.load( ... )
   round = 1
   score = 0
   time = 0
+
+  correctLane = random(0, 4)
+  currentTip = random(1, 10)
 end
 
 function game.update( dt )
@@ -49,9 +71,20 @@ function game.update( dt )
     boxY = 550
     boxSpeed = 0
     boxX = playerX - PLAYER_WIDTH / 4
-    boxLane = currentLane
 
     -- next round
+    round = round + 1
+
+    if boxLane == correctLane then
+      score = score + 10
+    else
+      score = score - 10
+    end
+
+    boxLane = currentLane
+
+    correctLane = random(0, 4)
+    currentTip = random(1, 10)
   end
 
 
@@ -63,7 +96,10 @@ function game.draw( ... )
 
   love.graphics.setColor(colors.blue)
   love.graphics.print('Which country is it?', 400, 350)
-  love.graphics.print(facts['Brazil'][1], 300, 400)
+
+  love.graphics.print(correctLane, 100, 300)
+  love.graphics.print(currentTip, 100, 350)
+  love.graphics.print(facts[countries[correctLane + 1]][currentTip], 50, 400)
 
   for i = 1, TOTAL_LANES do
     love.graphics.print(tostring(countries[i]), LANE_0_X + LANE_DISTANCE * (i - 1), 100)
