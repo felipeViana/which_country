@@ -18,8 +18,8 @@ local LANE_0_X = 100
 local LANE_DISTANCE = 200
 
 local round
-local score
-local time
+globalScore = 0
+globalTime = 0
 
 local correctLane
 local currentTip
@@ -34,6 +34,7 @@ local function getNearestInteger( value )
     return BiggerInt
   end
 end
+
 local function random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
@@ -50,8 +51,8 @@ function game.load( ... )
   boxLane = 0
 
   round = 1
-  score = 0
-  time = 0
+  globalScore = 0
+  globalTime = 0
 
   correctLane = random(0, 4)
   currentTip = random(1, 10)
@@ -76,9 +77,9 @@ function game.update( dt )
     round = round + 1
 
     if boxLane == correctLane then
-      score = score + 10
+      globalScore = globalScore + 10
     else
-      score = score - 10
+      globalScore = globalScore - 10
     end
 
     boxLane = currentLane
@@ -88,7 +89,11 @@ function game.update( dt )
   end
 
 
-  time = time + dt
+  globalTime = globalTime + dt
+
+  if round > 2 then
+    sceneManager.changeScene(require 'src/playAgain')
+  end
 end
 
 function game.draw( ... )
@@ -115,9 +120,9 @@ function game.draw( ... )
   )
 
   love.graphics.setColor(colors.yellow)
-  love.graphics.print('Round: ' .. round .. '/10', 1050, 100)
-  love.graphics.print('Score: ' .. score, 1050, 150)
-  love.graphics.print('Time: ' .. time, 1050, 200)
+  love.graphics.print('round: ' .. round .. '/10', 1050, 100)
+  love.graphics.print('score: ' .. globalScore, 1050, 150)
+  love.graphics.print('time: ' .. globalTime, 1050, 200)
 
   love.graphics.rectangle(
     'fill',
