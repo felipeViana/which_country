@@ -61,6 +61,14 @@ facts = {
   }
 }
 
+countries = {
+  'Brazil',
+  'Latvia',
+  'Sudan',
+  'Italy',
+  'Mexico'
+}
+
 local sceneManager = require 'src/sceneManager'
 
 function love.load( ... )
