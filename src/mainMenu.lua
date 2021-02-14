@@ -8,8 +8,8 @@ local selectedButton = 0
 local TOTAL_BUTTONS = 3
 
 local BUTTON_WIDTH = 300
-local BUTTON_HEIGHT = 40
-local BUTTON_RECTANGLE_X = 500
+local BUTTON_HEIGHT = 80
+local BUTTON_RECTANGLE_X = 475
 
 local BUTTON_1_Y = 280
 
@@ -24,41 +24,42 @@ function mainMenu.draw( ... )
   love.graphics.clear(colors.white)
 
   love.graphics.setColor(colors.blue)
-  love.graphics.print("Which country is it?", 500, 50)
+  love.graphics.setFont(bigFont)
+  love.graphics.print("Which country is it?", 475, 50)
 
   if selectedButton == 0 then
     love.graphics.rectangle(
       "line",
       BUTTON_RECTANGLE_X,
-      BUTTON_1_Y,
+      BUTTON_1_Y - 25,
       BUTTON_WIDTH,
       BUTTON_HEIGHT
     )
   end
-  love.graphics.print("NEW GAME", BUTTON_RECTANGLE_X + 100, BUTTON_1_Y)
+  love.graphics.print("NEW GAME", BUTTON_RECTANGLE_X + 75, BUTTON_1_Y)
 
 
   if selectedButton == 1 then
     love.graphics.rectangle(
       "line",
       BUTTON_RECTANGLE_X,
-      BUTTON_1_Y + 50,
+      BUTTON_1_Y + 100 - 25,
       BUTTON_WIDTH,
       BUTTON_HEIGHT
     )
   end
-  love.graphics.print("CREDITS", BUTTON_RECTANGLE_X + 100, BUTTON_1_Y + 50)
+  love.graphics.print("CREDITS", BUTTON_RECTANGLE_X + 75, BUTTON_1_Y + 100)
 
   if selectedButton == 2 then
     love.graphics.rectangle(
       "line",
       BUTTON_RECTANGLE_X,
-      BUTTON_1_Y + 50 * 2,
+      BUTTON_1_Y + 100 * 2 - 25,
       BUTTON_WIDTH,
       BUTTON_HEIGHT
     )
   end
-  love.graphics.print("EXIT", BUTTON_RECTANGLE_X + 100, BUTTON_1_Y + 50 * 2)
+  love.graphics.print("EXIT", BUTTON_RECTANGLE_X + 75, BUTTON_1_Y + 100 * 2)
 end
 
 

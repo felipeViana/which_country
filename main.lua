@@ -72,6 +72,9 @@ countries = {
 local sceneManager = require 'src/sceneManager'
 
 function love.load( ... )
+  defaultFont = love.graphics.newFont(14)
+  bigFont = love.graphics.newFont(28)
+
   brazilFlag = love.graphics.newImage("assets/brazil.jpeg")
   latviaFlag = love.graphics.newImage("assets/latvia.jpeg")
   sudanFlag = love.graphics.newImage("assets/sudan.jpeg")
