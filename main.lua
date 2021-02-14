@@ -43,7 +43,7 @@ facts = {
     'It is the world’s largest producer of wine.',
     'Number 17 is considered unlucky in this country, which is also why some of the hotels do not have a 17th floor.',
     'It is considered unlucky to seat together 13 people at the dinner table.',
-    'Breakfast in this country is a simple affair. If you want to eat like the locals, you’ll have to be satisfied with just a cappuccino and a croissant (such as brioche).',
+    'Breakfast in this country is a simple affair. If you want to eat like the locals, you’ll have to be satisfied with just a cappuccino and a croissant.',
     'Over 99% of the population can read and write.',
     '“Russo” is the most common surname in this country.'
   },
@@ -78,8 +78,8 @@ function love.load( ... )
   italyFlag = love.graphics.newImage("assets/italy.jpeg")
   mexicoFlag = love.graphics.newImage("assets/mexico.jpeg")
 
-  -- sceneManager.changeScene(require 'src/mainMenu')
-  sceneManager.changeScene(require 'src/game')
+  sceneManager.changeScene(require 'src/mainMenu')
+  -- sceneManager.changeScene(require 'src/game')
 end
 
 
