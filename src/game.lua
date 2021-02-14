@@ -26,21 +26,11 @@ local currentTip
 
 local playerAnimation
 
-local function getNearestInteger( value )
-  local smallerInt = value - value % 1
-  local BiggerInt = (value + 1) - value % 1
-
-  if BiggerInt - value > value - smallerInt then
-    return smallerInt
-  else
-    return BiggerInt
-  end
-end
-
 local function random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
-  return getNearestInteger(a + math.random() * (b - a))
+
+  return math.floor(a + math.random() * (b - a))
 end
 
 local function newAnimation(image, width, height, duration)
@@ -73,8 +63,8 @@ function game.load( ... )
   globalScore = 0
   globalTime = 0
 
-  correctLane = random(0, 4)
-  currentTip = random(1, 10)
+  correctLane = random(0, 5)
+  currentTip = random(1, 11)
 
   playerAnimation = newAnimation(playerImage, 32, 32, 1)
 end
@@ -105,8 +95,8 @@ function game.update( dt )
 
     boxLane = currentLane
 
-    correctLane = random(0, 4)
-    currentTip = random(1, 10)
+    correctLane = random(0, 5)
+    currentTip = random(1, 11)
   end
 
 
@@ -134,7 +124,7 @@ function game.draw( ... )
   love.graphics.draw(mexicoFlag, LANE_0_X - 25 + LANE_DISTANCE * 4, 10 + 20, 0, 0.3, 0.3)
 
   love.graphics.setColor(colors.blue)
-  love.graphics.print('Which country is it?', 400, 350)
+  love.graphics.print('Which country is it?', 350, 350)
 
   local currentPhrase = facts[countries[correctLane + 1]][currentTip]
   love.graphics.print(currentPhrase, 350 - string.len(currentPhrase) * 2, 400)
