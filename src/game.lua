@@ -141,14 +141,15 @@ function game.draw( ... )
     PLAYER_HEIGHT
   )
 
-  love.graphics.setColor(colors.red)
-  love.graphics.rectangle(
-    'fill',
-    boxX,
+  love.graphics.draw(
+    boxImage,
+    boxX - 25,
     boxY,
-    BOX_WIDTH,
-    BOX_HEIGHT
+    0,
+    3,
+    3
   )
+
 end
 
 function game.keypressed( key )

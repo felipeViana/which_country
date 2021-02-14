@@ -27,7 +27,7 @@ function credits.draw( ... )
   love.graphics.print("CREDITS", BUTTON_RECTANGLE_X + 100, 50)
 
 
-  love.graphics.print("author: Felipe Viana (Flash)", BUTTON_RECTANGLE_X + 100, 260)
+  love.graphics.print("Programming: Felipe Viana (Flash)", BUTTON_RECTANGLE_X + 100, 260)
   love.graphics.print("Art: Vell", BUTTON_RECTANGLE_X + 100, 310)
   love.graphics.print("Sound Design & Composition: James Foss", BUTTON_RECTANGLE_X + 100, 360)
 

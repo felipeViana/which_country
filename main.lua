@@ -78,8 +78,10 @@ function love.load( ... )
   italyFlag = love.graphics.newImage("assets/italy.jpeg")
   mexicoFlag = love.graphics.newImage("assets/mexico.jpeg")
 
-  sceneManager.changeScene(require 'src/mainMenu')
-  -- sceneManager.changeScene(require 'src/game')
+  boxImage = love.graphics.newImage("assets/mail_box.png")
+
+  -- sceneManager.changeScene(require 'src/mainMenu')
+  sceneManager.changeScene(require 'src/game')
 end
 
 
