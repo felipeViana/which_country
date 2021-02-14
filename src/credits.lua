@@ -29,7 +29,7 @@ function credits.draw( ... )
 
   love.graphics.print("author: Felipe Viana (Flash)", BUTTON_RECTANGLE_X + 100, 260)
   love.graphics.print("Art: Vell", BUTTON_RECTANGLE_X + 100, 310)
-  love.graphics.print("Music and sfx: Zip Nelson", BUTTON_RECTANGLE_X + 100, 360)
+  love.graphics.print("Sound Design & Composition: James Foss", BUTTON_RECTANGLE_X + 100, 360)
 
 
   love.graphics.rectangle(
