@@ -136,9 +136,8 @@ function game.draw( ... )
   love.graphics.setColor(colors.blue)
   love.graphics.print('Which country is it?', 400, 350)
 
-  -- love.graphics.print(correctLane, 100, 300)
-  -- love.graphics.print(currentTip, 100, 350)
-  love.graphics.print(facts[countries[correctLane + 1]][currentTip], 50, 400)
+  local currentPhrase = facts[countries[correctLane + 1]][currentTip]
+  love.graphics.print(currentPhrase, 350 - string.len(currentPhrase) * 2, 400)
 
   for i = 1, TOTAL_LANES do
     love.graphics.print(tostring(countries[i]), LANE_0_X + LANE_DISTANCE * (i - 1), 100)
@@ -183,7 +182,7 @@ function game.keypressed( key )
   end
 
   if key == 'space' then
-    boxSpeed = 500
+    boxSpeed = 600
   end
 
 
