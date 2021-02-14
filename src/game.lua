@@ -24,6 +24,8 @@ globalTime = 0
 local correctLane
 local currentTip
 
+local playerAnimation
+
 local function getNearestInteger( value )
   local smallerInt = value - value % 1
   local BiggerInt = (value + 1) - value % 1
@@ -41,6 +43,23 @@ local function random(a, b)
   return getNearestInteger(a + math.random() * (b - a))
 end
 
+local function newAnimation(image, width, height, duration)
+    local animation = {}
+    animation.spriteSheet = image;
+    animation.quads = {};
+
+    for y = 0, 160 - height, height do
+        for x = 0, 160 - width, width do
+            table.insert(animation.quads, love.graphics.newQuad(x, y, width, height, image:getDimensions()))
+        end
+    end
+
+    animation.duration = duration or 1
+    animation.currentTime = 0
+
+    return animation
+end
+
 function game.load( ... )
   playerX = 100
   currentLane = 0
@@ -56,6 +75,8 @@ function game.load( ... )
 
   correctLane = random(0, 4)
   currentTip = random(1, 10)
+
+  playerAnimation = newAnimation(playerImage, 32, 32, 1)
 end
 
 function game.update( dt )
@@ -94,6 +115,12 @@ function game.update( dt )
   if round > 10 then
     sceneManager.changeScene(require 'src/playAgain')
   end
+
+  playerAnimation.currentTime = playerAnimation.currentTime + dt
+  if playerAnimation.currentTime >= playerAnimation.duration then
+      playerAnimation.currentTime = playerAnimation.currentTime - playerAnimation.duration
+  end
+
 end
 
 function game.draw( ... )
@@ -133,13 +160,8 @@ function game.draw( ... )
   love.graphics.print('score: ' .. globalScore, 1050, 150)
   love.graphics.print('time: ' .. globalTime, 1050, 200)
 
-  love.graphics.rectangle(
-    'fill',
-    playerX,
-    PLAYER_Y,
-    PLAYER_WIDTH,
-    PLAYER_HEIGHT
-  )
+  local spriteNum = math.floor(playerAnimation.currentTime / playerAnimation.duration * #playerAnimation.quads) + 1
+  love.graphics.draw(playerAnimation.spriteSheet, playerAnimation.quads[spriteNum], playerX-15, PLAYER_Y-25, 0, 2)
 
   love.graphics.draw(
     boxImage,
