@@ -14,7 +14,7 @@ local boxX, boxY, boxSpeed, boxLane
 local BOX_WIDTH = 50
 local BOX_HEIGHT = 50
 
-local LANE_0_X = 100
+local LANE_0_X = 50
 local LANE_DISTANCE = 200
 
 local round
@@ -117,23 +117,22 @@ function game.draw( ... )
   love.graphics.clear(colors.white)
 
   love.graphics.setColor({1, 1, 1})
-  love.graphics.draw(brazilFlag, LANE_0_X - 25, 10+10, 0, 0.2, 0.2)
-  love.graphics.draw(latviaFlag, LANE_0_X - 25 + LANE_DISTANCE, 10 + 20, 0, 0.25, 0.25)
-  love.graphics.draw(sudanFlag, LANE_0_X - 25 + LANE_DISTANCE * 2, 10 + 10, 0, 0.2, 0.2)
-  love.graphics.draw(italyFlag, LANE_0_X - 25 + LANE_DISTANCE * 3, 10 + 20, 0, 0.3, 0.3)
-  love.graphics.draw(mexicoFlag, LANE_0_X - 25 + LANE_DISTANCE * 4, 10 + 20, 0, 0.3, 0.3)
+  love.graphics.draw(brazilFlag, 45 + LANE_0_X - 25, 10+10, 0, 0.2, 0.2)
+  love.graphics.draw(latviaFlag, 50 + LANE_0_X - 40 + LANE_DISTANCE, 10 + 20, 0, 0.25, 0.25)
+  love.graphics.draw(sudanFlag, 50 + LANE_0_X - 30 + LANE_DISTANCE * 2, 10 + 10, 0, 0.2, 0.2)
+  love.graphics.draw(italyFlag, 50 + LANE_0_X - 25 + LANE_DISTANCE * 3, 10 + 20, 0, 0.3, 0.3)
+  love.graphics.draw(mexicoFlag, 50 + LANE_0_X - 25 + LANE_DISTANCE * 4, 10 + 20, 0, 0.3, 0.3)
 
   love.graphics.setColor(colors.blue)
-  love.graphics.print('Which country is it?', 350, 350)
-
-  local currentPhrase = facts[countries[correctLane + 1]][currentTip]
-  love.graphics.print(currentPhrase, 350 - string.len(currentPhrase) * 2, 400)
-
   for i = 1, TOTAL_LANES do
-    love.graphics.print(tostring(countries[i]), LANE_0_X + LANE_DISTANCE * (i - 1), 100)
+    love.graphics.print(tostring(countries[i]), LANE_0_X + LANE_DISTANCE * (i - 1) + 50, 100)
+    love.graphics.line(
+      LANE_0_X + LANE_DISTANCE * (i - 1) - 25,
+      0,
+      LANE_0_X + LANE_DISTANCE * (i - 1) - 25,
+      1300
+    )
   end
-
-
 
   love.graphics.setColor(colors.darkBlue)
   love.graphics.rectangle(
@@ -150,17 +149,32 @@ function game.draw( ... )
   love.graphics.print('time: ' .. globalTime, 1050, 200)
 
   local spriteNum = math.floor(playerAnimation.currentTime / playerAnimation.duration * #playerAnimation.quads) + 1
-  love.graphics.draw(playerAnimation.spriteSheet, playerAnimation.quads[spriteNum], playerX-15, PLAYER_Y-25, 0, 2)
+  love.graphics.draw(playerAnimation.spriteSheet, playerAnimation.quads[spriteNum], playerX-15 + 50, PLAYER_Y-25, 0, 2)
 
+
+  love.graphics.setColor(colors.yellow)
+  love.graphics.rectangle(
+    'fill',
+    35,
+    300,
+    935,
+    200
+  )
+  love.graphics.setColor(colors.darkBlue)
+  love.graphics.print('Which country is it?', 350, 350)
+
+  local currentPhrase = facts[countries[correctLane + 1]][currentTip]
+  love.graphics.print(currentPhrase, 350 - string.len(currentPhrase) * 2, 400)
+
+  love.graphics.setColor({1, 1, 1})
   love.graphics.draw(
     boxImage,
-    boxX - 25,
+    boxX + 25,
     boxY,
     0,
     3,
     3
   )
-
 end
 
 function game.keypressed( key )
