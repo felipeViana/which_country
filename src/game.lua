@@ -1,4 +1,5 @@
 local sceneManager = require 'src/sceneManager'
+local soundManager = require 'src/soundManager'
 local colors = require 'src/colors'
 
 local game = {}
@@ -89,8 +90,10 @@ function game.update( dt )
 
     if boxLane == correctLane then
       globalScore = globalScore + 10
+      soundManager.play(rightCountrySound)
     else
       globalScore = globalScore - 10
+      soundManager.play(wrongCountrySound)
     end
 
     boxLane = currentLane
@@ -180,9 +183,11 @@ end
 function game.keypressed( key )
   if key == 'd' or key == 'right' then
     currentLane = (currentLane + 1) % TOTAL_LANES
+    soundManager.play(changeLaneSound)
   end
   if key == 'a' or key == 'left' then
     currentLane = (currentLane - 1 + TOTAL_LANES) % TOTAL_LANES
+    soundManager.play(changeLaneSound)
   end
 
   if key == 'space' then

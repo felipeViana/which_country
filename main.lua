@@ -81,8 +81,15 @@ function love.load( ... )
   boxImage = love.graphics.newImage("assets/mail_box.png")
   playerImage = love.graphics.newImage("assets/mail_boy.png")
 
-  -- sceneManager.changeScene(require 'src/mainMenu')
-  sceneManager.changeScene(require 'src/game')
+  selectSound = love.audio.newSource("assets/Menu_-_Select_1.wav", "static")
+  changeSound = love.audio.newSource("assets/Menu_Click_-_Mid.wav", "static")
+
+  changeLaneSound = love.audio.newSource("assets/Press_LeftRight_1.wav", "static")
+  rightCountrySound = love.audio.newSource("assets/Select_Country_-_Correct_2.wav", "static")
+  wrongCountrySound = love.audio.newSource("assets/Select_Country_-_Wrong_2.wav", "static")
+
+  sceneManager.changeScene(require 'src/mainMenu')
+  -- sceneManager.changeScene(require 'src/game')
 end
 
 

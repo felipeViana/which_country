@@ -1,4 +1,5 @@
 local sceneManager = require 'src/sceneManager'
+local soundManager = require 'src/soundManager'
 local colors = require 'src/colors'
 
 local playAgain = {}
@@ -27,6 +28,7 @@ end
 function playAgain.keypressed( key )
   if key == 'return' then
     sceneManager.changeScene(require 'src/game')
+    soundManager.play(selectSound)
   end
 
   if key == 'escape' then

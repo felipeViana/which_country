@@ -1,4 +1,5 @@
 local sceneManager = require 'src/sceneManager'
+local soundManager = require 'src/soundManager'
 local colors = require 'src/colors'
 
 local mainMenu = {}
@@ -63,7 +64,7 @@ end
 
 function mainMenu.keypressed(key)
   if key == 'space' or key == 'return' then
-    -- soundManager.play(selectSound)
+    soundManager.play(selectSound)
 
     if selectedButton == 0 then
       sceneManager.changeScene(require 'src/game')
@@ -76,12 +77,12 @@ function mainMenu.keypressed(key)
 
   if key == 'up' or key == 'w' then
     selectedButton = (selectedButton + TOTAL_BUTTONS - 1) % TOTAL_BUTTONS
-    -- soundManager.play(changeSound)
+    soundManager.play(changeSound)
   end
 
   if key == 'down' or key == 's' then
     selectedButton = (selectedButton + 1) % TOTAL_BUTTONS
-    -- soundManager.play(changeSound)
+    soundManager.play(changeSound)
   end
 end
 

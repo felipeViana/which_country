@@ -1,4 +1,5 @@
 local colors = require 'src/colors'
+local soundManager = require 'src/soundManager'
 local sceneManager = require 'src/sceneManager'
 -- local soundManager = require 'soundManager'
 
@@ -44,7 +45,7 @@ end
 
 function credits.keypressed( key )
   if key == 'space' or key == 'return' then
-    -- soundManager.play(selectSound)
+    soundManager.play(selectSound)
     sceneManager.changeScene(require 'src/mainMenu')
   end
 end
