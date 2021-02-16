@@ -1,5 +1,5 @@
 # which_country
-Game made in 3h for Trijam #107 using Lôve2d
+Game made in 3h for Trijam #107 using Löve2d
 
 https://felipeviana.itch.io/which-country
 
