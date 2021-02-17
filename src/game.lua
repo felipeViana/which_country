@@ -68,6 +68,8 @@ function game.load( ... )
   currentTip = random(1, 11)
 
   playerAnimation = newAnimation(playerImage, 32, 32, 1)
+
+  bgMusic:play()
 end
 
 function game.update( dt )

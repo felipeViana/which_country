@@ -91,6 +91,9 @@ function love.load( ... )
   rightCountrySound = love.audio.newSource("assets/Select_Country_-_Correct_2.wav", "static")
   wrongCountrySound = love.audio.newSource("assets/Select_Country_-_Wrong_2.wav", "static")
 
+  bgMusic = love.audio.newSource("assets/music.wav", "stream")
+  bgMusic:setLooping(true)
+
   sceneManager.changeScene(require 'src/mainMenu')
   -- sceneManager.changeScene(require 'src/game')
 end
